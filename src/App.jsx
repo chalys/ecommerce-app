@@ -28,11 +28,7 @@ const App = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/fashion" element={<Fashion />} />
                 <Route path="/product/:id" element={<ProductDetailPage />} />
-                <Route path="/cart" element={
-                  <ProtectedRoute>
-                    <Cart />
-                  </ProtectedRoute>
-                } />
+                <Route path="/cart" element={<Cart />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/profile" element={
                   <ProtectedRoute>

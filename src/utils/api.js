@@ -28,7 +28,7 @@ export const api = {
   },
 
   getProductsByCategory(category) {
-    return fetch(`${API_BASE}/products/category/${category}`)
+    return fetch(`${API_BASE}/products/category/${encodeURIComponent(category)}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Error al cargar categoría");

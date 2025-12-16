@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useContext } from 'react'
+import { createContext, useState, useEffect, useContext, useCallback } from 'react'
 import { api } from '../utils/api'
 
 const ProductContext = createContext()
@@ -19,7 +19,7 @@ export const ProductProvider = ({ children }) => {
   const [error, setError] = useState(null)
 
   // Cargar todos los productos
-  const loadProducts = () => {
+  const loadProducts = useCallback(() => {
     setLoading(true)
     setError(null)
     
@@ -34,10 +34,10 @@ export const ProductProvider = ({ children }) => {
         setError(err.message)
         setLoading(false)
       })
-  }
+  }, [])
 
   // Cargar productos por categoría
-  const loadProductsByCategory = (category) => {
+  const loadProductsByCategory = useCallback((category) => {
     setLoading(true)
     setError(null)
     
@@ -51,10 +51,10 @@ export const ProductProvider = ({ children }) => {
         setLoading(false)
         throw err
       })
-  }
+  }, [])
 
   // Cargar producto por ID
-  const loadProductById = (id) => {
+  const loadProductById = useCallback((id) => {
     setLoading(true)
     setError(null)
     
@@ -68,10 +68,10 @@ export const ProductProvider = ({ children }) => {
         setLoading(false)
         throw err
       })
-  }
+  }, [])
 
   // Cargar categorías
-  const loadCategories = () => {
+  const loadCategories = useCallback(() => {
     // En una API real, tendrías un endpoint para categorías
     const hardcodedCategories = [
       "electronics",
@@ -80,10 +80,10 @@ export const ProductProvider = ({ children }) => {
       "women's clothing"
     ]
     setCategories(hardcodedCategories)
-  }
+  }, [])
 
   // Buscar productos
-  const searchProducts = (query) => {
+  const searchProducts = useCallback((query) => {
     if (!query) return products
     
     return products.filter(product =>
@@ -91,13 +91,13 @@ export const ProductProvider = ({ children }) => {
       product.description.toLowerCase().includes(query.toLowerCase()) ||
       product.category.toLowerCase().includes(query.toLowerCase())
     )
-  }
+  }, [products]) // Dependencia products necesaria
 
   // Cargar datos iniciales
   useEffect(() => {
     loadProducts()
     loadCategories()
-  }, [])
+  }, []) // loadProducts y loadCategories son estables ahora, pero [] está bien para mount
 
   const value = {
     products,
@@ -109,7 +109,7 @@ export const ProductProvider = ({ children }) => {
     loadProductsByCategory,
     loadProductById,
     searchProducts,
-    addProduct: (product) => {
+    addProduct: useCallback((product) => {
       setLoading(true)
       return api.addProduct(product)
         .then(newProduct => {
@@ -124,8 +124,8 @@ export const ProductProvider = ({ children }) => {
           setLoading(false)
           throw err
         })
-    },
-    updateProduct: (id, productData) => {
+    }, []),
+    updateProduct: useCallback((id, productData) => {
       setLoading(true)
       return api.updateProduct(id, productData)
         .then(updatedData => {
@@ -138,8 +138,8 @@ export const ProductProvider = ({ children }) => {
           setLoading(false)
           throw err
         })
-    },
-    deleteProduct: (id) => {
+    }, []),
+    deleteProduct: useCallback((id) => {
       setLoading(true)
       return api.deleteProduct(id)
         .then(() => {
@@ -151,7 +151,7 @@ export const ProductProvider = ({ children }) => {
           setLoading(false)
           throw err
         })
-    }
+    }, [])
   }
 
   return (
