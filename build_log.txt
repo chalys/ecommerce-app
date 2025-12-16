@@ -1,0 +1,29 @@
+
+> ecommerce-app@0.0.0 build
+> vite build
+
+[36mvite v7.3.0 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 62 modules transformed.
+[31m✗[39m Build failed in 1.68s
+[31merror during build:
+[31msrc/App.jsx (10:7): "default" is not exported by "src/components/cart/Cart.jsx", imported by "src/App.jsx".[31m
+file: [36mC:/Users/Carlos/Downloads/ecommerce-app-main/ecommerce-app-main - copia (2)/src/App.jsx:10:7[31m
+[33m
+ 8: import Fashion from './pages/Fashion'
+ 9: import ProductDetailPage from './pages/ProductDetailPage'
+10: import Cart from './components/cart/Cart'
+           ^
+11: import Login from './components/auth/Login'
+12: import Profile from './pages/Profile'
+[31m
+    at getRollupError (file:///C:/Users/Carlos/Downloads/ecommerce-app-main/ecommerce-app-main%20-%20copia%20(2)/node_modules/rollup/dist/es/shared/parseAst.js:401:41)
+    at error (file:///C:/Users/Carlos/Downloads/ecommerce-app-main/ecommerce-app-main%20-%20copia%20(2)/node_modules/rollup/dist/es/shared/parseAst.js:397:42)
+    at Module.error (file:///C:/Users/Carlos/Downloads/ecommerce-app-main/ecommerce-app-main%20-%20copia%20(2)/node_modules/rollup/dist/es/shared/node-entry.js:16994:16)
+    at Module.traceVariable (file:///C:/Users/Carlos/Downloads/ecommerce-app-main/ecommerce-app-main%20-%20copia%20(2)/node_modules/rollup/dist/es/shared/node-entry.js:17450:29)
+    at ModuleScope.findVariable (file:///C:/Users/Carlos/Downloads/ecommerce-app-main/ecommerce-app-main%20-%20copia%20(2)/node_modules/rollup/dist/es/shared/node-entry.js:15113:39)
+    at ReturnValueScope.findVariable (file:///C:/Users/Carlos/Downloads/ecommerce-app-main/ecommerce-app-main%20-%20copia%20(2)/node_modules/rollup/dist/es/shared/node-entry.js:5674:38)
+    at FunctionBodyScope.findVariable (file:///C:/Users/Carlos/Downloads/ecommerce-app-main/ecommerce-app-main%20-%20copia%20(2)/node_modules/rollup/dist/es/shared/node-entry.js:5674:38)
+    at Identifier.bind (file:///C:/Users/Carlos/Downloads/ecommerce-app-main/ecommerce-app-main%20-%20copia%20(2)/node_modules/rollup/dist/es/shared/node-entry.js:5448:40)
+    at CallExpression.bind (file:///C:/Users/Carlos/Downloads/ecommerce-app-main/ecommerce-app-main%20-%20copia%20(2)/node_modules/rollup/dist/es/shared/node-entry.js:2813:28)
+    at CallExpression.bind (file:///C:/Users/Carlos/Downloads/ecommerce-app-main/ecommerce-app-main%20-%20copia%20(2)/node_modules/rollup/dist/es/shared/node-entry.js:12148:15)[39m
